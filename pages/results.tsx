@@ -7,6 +7,9 @@ const Results: NextPage = () => {
 
     useEffect(() => {
         fetch('/api/getAllAnimals').then(res => res.json()).then(data => {
+            data.animal_data.sort((a:any, b:any) => {
+                return (b.wins - b.loses) - (a.wins - a.loses)
+            })
             setAnimals(data.animal_data)
         })
     }, [])
