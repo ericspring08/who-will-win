@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
 const Home: NextPage = () => {
@@ -84,7 +85,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className='flex flex-row justify-center'>
-                <a href='/results' className='text-white text-2xl p-4'>Results</a>
+                <Link href='/results' className='text-white text-2xl p-4'>Results</Link>
           </div>
         </div>
       </main>
