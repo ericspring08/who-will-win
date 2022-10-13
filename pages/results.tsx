@@ -17,9 +17,9 @@ const Results: NextPage = () => {
             {
                 animals.map((animal, index) => {
                     return (
-                        <div key={index} className="flex flex-row justify-around p-12">
-                            <h1 className="text-white text-center text-4xl font-mono">{animal.animal}</h1>
-                            <h1 className="text-white text-center text-4xl font-mono justify-items-end">{animal.wins} wins, {animal.loses} loses</h1>
+                        <div key={index} className="flex flex-row justify-between">
+                            <h1 className="text-white text-center text-4xl font-mono justify-self-start">{index + 1}. {animal.animal}</h1>
+                            <h1 className="text-white text-center text-4xl font-mono">{animal.wins} wins, {animal.loses} loses</h1>
                         </div>
                     )
                 })

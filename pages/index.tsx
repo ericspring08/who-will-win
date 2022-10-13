@@ -86,7 +86,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className='flex flex-row justify-center'>
-                <Link href='/results' className='text-white text-2xl p-4'>Results</Link>
+                <Link href='/results'><div className= 'text-2x text-white p-4'>Results</div></Link>
           </div>
         </div>
       </main>
