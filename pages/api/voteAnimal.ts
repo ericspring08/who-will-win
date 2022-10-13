@@ -8,7 +8,10 @@ export default function handler(req:any, res:any) {
 
     const results = JSON.parse(req.body)
 
-    console.log(results)
+    let winner = results.winner
+    let loser = results.loser
+
+    
 
     res.status(200).json({ message: 'Success' })
 }
