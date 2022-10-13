@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const Results: NextPage = () => {
 
-    const [animals, setAnimals] = useState([])
+    const [animals, setAnimals] = useState<any[]>([])
 
     useEffect(() => {
         fetch('/api/getAllAnimals').then(res => res.json()).then(data => {
