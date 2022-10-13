@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     fetchAnimals()
   }, [])
-
+  
   const fetchAnimals = async () => {
     const res = await fetch('/api/getAnimals')
     const animals = await res.json()
@@ -66,25 +66,27 @@ const Home: NextPage = () => {
       <main>
         <div className="h-screen w-screen flex flex-auto flex-col justify-around bg-black">
           <h1 className="text-white text-center text-8xl font-mono">Who Will Win?</h1>
-            <div>
-              <div className="flex flex-wrap flex-row justify-around items-center">
-                <div className='flex flex-col justify-between items-center'>
-                  <img alt='first animal' src={animal1Image} className='rounded p-12 max-h-96' onClick={() => {
-                    pickStrongerAnimal(0)
-                  }}/>
-                  <div className='text-white p-4 text-3xl'>{animal1}</div>
-                </div>
-                <div className="text-white text-xl">VS.</div>
-                <div className='flex flex-col justify-between items-center'>
-                  <img alt='second animal' src={animal2Image} className='rounded p-12 max-h-96' onClick={() => {
-                    pickStrongerAnimal(1)
-                  }}/>
-                  <div className='text-white p-4 text-3xl'>{animal2}</div>
-                </div>
+          <div>
+            <div className="flex flex-wrap flex-row justify-around items-center">
+              <div className='flex flex-col justify-between items-center'>
+                <img alt='first animal' src={animal1Image} className='rounded p-12 max-h-96' onClick={() => {
+                  pickStrongerAnimal(0)
+                }}/>
+                <div className='text-white p-4 text-3xl'>{animal1}</div>
+              </div>
+              <div className="text-white text-xl">VS.</div>
+              <div className='flex flex-col justify-between items-center'>
+                <img alt='second animal' src={animal2Image} className='rounded p-12 max-h-96' onClick={() => {
+                  pickStrongerAnimal(1)
+                }}/>
+                <div className='text-white p-4 text-3xl'>{animal2}</div>
               </div>
             </div>
+          </div>
+          <div className='flex flex-row justify-center'>
+                <a href='/results' className='text-white text-2xl p-4'>Results</a>
+          </div>
         </div>
-        
       </main>
     </div>
   )
