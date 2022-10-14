@@ -32,7 +32,12 @@ const Results: NextPage = () => {
     )
 }
 
-const AnimalList: NextPage = (props:any) => {
+interface AnimalListProps {
+    animals: any[],
+    isLoading: boolean
+}
+
+const AnimalList: NextPage<AnimalListProps> = (props:AnimalListProps) => {
     if(props.isLoading) {
         return (
             <div className="text-white text-center text-4xl font-mono">Loading...</div>
