@@ -5,7 +5,29 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
 const Home: NextPage = () => {
+  return (
+    <div>
+      <Head>
+        <title>Who Will Win?</title>
+        <meta name="description" content="Find out who is the strongest animal?" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
+      <main>
+        <div className="h-screen w-screen flex flex-auto flex-col justify-around bg-black">
+          <h1 className="text-white text-center text-8xl font-mono">Who Will Win?</h1>
+          <PickAnimal></PickAnimal>
+          <div className='flex flex-row justify-center'>
+                <Link href='/results'><div className= 'text-2x text-white p-4'>Results</div></Link>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
+const PickAnimal: NextPage = () => {
+  const [isLoading, setIsLoading] = useState(true)
   const [animal1, setAnimal1] = useState('')
   const [animal2, setAnimal2] = useState('')
 
@@ -13,7 +35,9 @@ const Home: NextPage = () => {
   const [animal2Image, setAnimal2Image] = useState('')
 
   useEffect(() => {
+    setIsLoading(true)
     fetchAnimals()
+    setIsLoading(false)
   }, [])
   
   const fetchAnimals = async () => {
@@ -57,39 +81,31 @@ const Home: NextPage = () => {
     fetchAnimals()
   }
 
+  if(isLoading) {
+    return <div className='text-white text-center text-2xl'>Loading...</div>
+  }
+  
   return (
     <div>
-      <Head>
-        <title>Who Will Win?</title>
-        <meta name="description" content="Find out who is the strongest animal?" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <div className="h-screen w-screen flex flex-auto flex-col justify-around bg-black">
-          <h1 className="text-white text-center text-8xl font-mono">Who Will Win?</h1>
-          <div>
-            <div className="flex flex-wrap flex-row justify-around items-center">
-              <div className='flex flex-col justify-between items-center'>
-                <img alt='first animal' src={animal1Image} className='rounded p-12 max-h-96' onClick={() => {
-                  pickStrongerAnimal(0)
-                }}/>
-                <div className='text-white p-4 text-3xl'>{animal1}</div>
-              </div>
-              <div className="text-white text-xl">VS.</div>
-              <div className='flex flex-col justify-between items-center'>
-                <img alt='second animal' src={animal2Image} className='rounded p-12 max-h-96' onClick={() => {
-                  pickStrongerAnimal(1)
-                }}/>
-                <div className='text-white p-4 text-3xl'>{animal2}</div>
-              </div>
-            </div>
-          </div>
-          <div className='flex flex-row justify-center'>
-                <Link href='/results'><div className= 'text-2x text-white p-4'>Results</div></Link>
-          </div>
+      <div className="flex flex-wrap flex-row justify-around items-center">
+        <div className='flex flex-col justify-between items-center'>
+          <img alt='first animal' src={animal1Image} className='rounded p-12 max-h-96' onClick={() => {
+            pickStrongerAnimal(0)
+          }} onLoad={() => {
+            setIsLoading(false)
+          }}/>
+          <div className='text-white p-4 text-3xl'>{animal1}</div>
         </div>
-      </main>
+        <div className="text-white text-xl">VS.</div>
+        <div className='flex flex-col justify-between items-center'>
+          <img alt='second animal' src={animal2Image} className='rounded p-12 max-h-96' onClick={() => {
+            pickStrongerAnimal(1)
+          }} onLoad={() => {
+            setIsLoading(false)
+          }}/>
+          <div className='text-white p-4 text-3xl'>{animal2}</div>
+        </div>
+      </div>
     </div>
   )
 }
