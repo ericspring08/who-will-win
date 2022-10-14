@@ -9,7 +9,7 @@ const Results: NextPage = () => {
     useEffect(() => {
         fetch('/api/getAllAnimals').then(res => res.json()).then(data => {
             data.animal_data.sort((a:any, b:any) => {
-                return (b.wins - b.loses) - (a.wins - a.loses)
+                return (parseInt(b.wins) / (parseInt(b.wins) + parseInt(b.loses))) - (parseInt(a.wins) / (parseInt(a.wins) + parseInt(a.loses)))
             })
             setAnimals(data.animal_data)
         })
@@ -30,6 +30,7 @@ const Results: NextPage = () => {
                             return (
                                 <div key={index} className="flex flex-row justify-between p-2">
                                     <h1 className="text-white text-center text-4xl font-mono justify-self-start">{index + 1}. {animal.animal}</h1>
+                                    <h1 className="text-white text-center text-4xl font-mono justify-self-end">{parseInt(animal.wins) / (parseInt(animal.wins) + parseInt(animal.loses)) * 100}%</h1>
                                     <h1 className="text-white text-center text-4xl font-mono">{animal.wins} wins, {animal.loses} loses</h1>
                                 </div>
                             )
