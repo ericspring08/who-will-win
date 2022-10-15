@@ -2,9 +2,15 @@ import { NextApiRequest, NextApiResponse } from "next"
 
 const { Pool } = require('pg')
 
+type AnimalLeaderboard = {
+    animal: string,
+    wins: number,
+    loses: number
+}
+
 export default function handler(
-    req: any,
-    res: any
+    req: NextApiRequest,
+    res: NextApiResponse<AnimalLeaderboard>
   ) {
     const pool = new Pool({
         connectionString: 'postgresql://ericspring08:v2_3um6G_tLnx5FWVHu5cHMqBPZejvPe@db.bit.io/ericspring08/whowillwin',
@@ -17,9 +23,7 @@ export default function handler(
         if (err) {
             console.log("error")
         } else {
-            res.json({
-                animal_data: response.rows
-            })
+            res.json(response.rows)
         }
     })
 }

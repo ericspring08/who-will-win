@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 const { Pool } = require('pg')
 
-export default function handler(req:any, res:any) {
+export default function handler(req:NextApiRequest, res:NextApiResponse) {
     if (req.method !== 'POST') {
         res.status(405).send({ message: 'Only POST requests allowed' })
         return
