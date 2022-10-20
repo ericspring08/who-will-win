@@ -14,7 +14,7 @@ export default function handler(req:NextApiRequest, res:NextApiResponse) {
     let loser = results.loser
 
     const pool = new Pool({
-        connectionString: 'postgresql://ericspring08:v2_3um6G_tLnx5FWVHu5cHMqBPZejvPe@db.bit.io/ericspring08/whowillwin',
+        connectionString: process.env.POSTGRESQL_KEY,
         ssl: {
             rejectUnauthorized: false
         }
