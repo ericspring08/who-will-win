@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Home: NextPage = () => {
   return (
@@ -41,40 +42,34 @@ const PickAnimal: NextPage = () => {
   }, [])
   
   const fetchAnimals = async () => {
-    const res = await fetch('/api/getAnimals')
-    const animals = await res.json()
+    const res = await axios.get('/api/getAnimals')
+    const animals = await res.data
 
     setAnimal1(animals.animal1)
     setAnimal2(animals.animal2)
 
-    const animal1_photo_res = fetch(`https://pixabay.com/api/?key=30553791-b79af191b7024567b4cd8a0f9&q=${animals.animal1} animal&category=animals&image_type=photo&page=1&per_page=3`)
-    animal1_photo_res.then(res => res.json()).then(data => {
-      setAnimal1Image(data.hits[0].largeImageURL)
-    })
+    await axios.get(`/api/getAnimalPhoto?animal=${animals.animal1}`)
+      .then((res) => {
+        setAnimal1Image(res.data.photo)
+      })
 
-    const animal2_photo_res = fetch(`https://pixabay.com/api/?key=30553791-b79af191b7024567b4cd8a0f9&q=${animals.animal2} animal&category=animals&image_type=photo&page=1&per_page=3`)
-    animal2_photo_res.then(res => res.json()).then(data => {
-      setAnimal2Image(data.hits[0].largeImageURL)
-    })
+    axios.get(`/api/getAnimalPhoto?animal=${animals.animal2}`)
+      .then((res) => {
+        setAnimal2Image(res.data.photo)
+      })
   }
 
   const pickStrongerAnimal = (selection:number) => {
     if(selection === 0) {
-      fetch('/api/voteAnimal', {
-        method: 'POST',
-        body: JSON.stringify({
-          winner: animal1,
-          loser: animal2
-        })
+      axios.post('/api/voteAnimal', {
+        winner: animal1,
+        loser: animal2
       })
     } 
     if(selection === 1) {
-      fetch('/api/voteAnimal', {
-        method: 'POST',
-        body: JSON.stringify({
-          winner: animal2,
-          loser: animal1
-        })
+      axios.post('/api/voteAnimal', {
+        winner: animal2,
+        loser: animal1
       })
     }
 

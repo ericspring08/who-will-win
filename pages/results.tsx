@@ -1,3 +1,4 @@
+import axios from "axios";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -8,11 +9,11 @@ const Results: NextPage = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch('/api/getAllAnimals').then(res => res.json()).then(data => {
-            data.sort((a:any, b:any) => {
+        axios.post('/api/getAllAnimals').then(res => {
+            res.data.sort((a:any, b:any) => {
                 return (parseInt(b.wins) / (parseInt(b.wins) + parseInt(b.loses))) - (parseInt(a.wins) / (parseInt(a.wins) + parseInt(a.loses)))
             })
-            setAnimals(data)
+            setAnimals(res.data)
         })
         setIsLoading(false)
     }, [])
