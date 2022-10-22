@@ -8,7 +8,7 @@ export default function handler(req:NextApiRequest, res:NextApiResponse) {
         return
     }
 
-    const results = JSON.parse(req.body)
+    const results = req.body
 
     let winner = results.winner
     let loser = results.loser
