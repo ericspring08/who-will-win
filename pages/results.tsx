@@ -57,8 +57,8 @@ const AnimalList: NextPage<AnimalListProps> = (props:AnimalListProps) => {
                     return (
                         <div key={index} className="flex flex-row justify-start p-2">
                             <h1 className="text-white text-4xl font-mono flex-1 text-start">{index + 1}. {animal.animal}</h1>
-                            <div className="h-6 w-1/3 bg-gray-200 rounded-full self-center justify-self-end mr-2 dark:bg-gray-700">
-                                <div className="h-6 bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{width: `${(parseInt(animal.wins) / (parseInt(animal.wins) + parseInt(animal.loses)) * 100)}%`}}>{Math.round(parseInt(animal.wins) / (parseInt(animal.wins) + parseInt(animal.loses)) * 100)}%</div>
+                            <div className="h-6 w-1/3 bg-gray-200 rounded-full self-center justify-self-end mr-2 dark:bg-gray-700 justify-items-center">
+                                <div className="h-6 bg-blue-600 text-xl font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{width: `${(parseInt(animal.wins) / (parseInt(animal.wins) + parseInt(animal.loses)) * 100)}%`}}>{Math.round(parseInt(animal.wins) / (parseInt(animal.wins) + parseInt(animal.loses)) * 100)}%</div>
                             </div>
                             <h1 className="text-white text-center text-4xl font-mono justify-self-end">{animal.wins} wins, {animal.loses} loses</h1>
                         </div>
@@ -66,7 +66,7 @@ const AnimalList: NextPage<AnimalListProps> = (props:AnimalListProps) => {
                 })
             }
         </div>
-    )
+   )
 }
 
 export default Results
