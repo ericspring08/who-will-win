@@ -40,45 +40,25 @@ const PickAnimal: NextPage = () => {
   }, [])
   
   const fetchAnimals = async () => {
-<<<<<<< HEAD
-    const res = await axios.get('/api/getAnimals')
-    const animals = await res.data
-=======
     setIsLoading(true)
     setTimeout(
       async () => {
         const res = await fetch('/api/getAnimals')
         const animals = await res.json()
->>>>>>> 679ab1c (add loading indicator)
 
         setAnimal1(animals.animal1)
         setAnimal2(animals.animal2)
 
-<<<<<<< HEAD
-    await axios.get(`/api/getAnimalPhoto?animal=${animals.animal1}`)
-      .then((res) => {
-        setAnimal1Image(res.data.photo)
-      })
-
-    axios.get(`/api/getAnimalPhoto?animal=${animals.animal2}`)
-      .then((res) => {
-        setAnimal2Image(res.data.photo)
-      })
-=======
-        const animal1_photo_res = fetch(`https://pixabay.com/api/?key=30553791-b79af191b7024567b4cd8a0f9&q=${animals.animal1} animal&category=animals&image_type=photo&page=1&per_page=3`)
-        animal1_photo_res.then(res => res.json()).then(data => {
-          setAnimal1Image(data.hits[0].largeImageURL)
+        await axios.get(`/api/getAnimalPhoto?animal=${animals.animal1}`)
+        .then((res) => {
+          setAnimal1Image(res.data.photo)
         })
 
-        const animal2_photo_res = fetch(`https://pixabay.com/api/?key=30553791-b79af191b7024567b4cd8a0f9&q=${animals.animal2} animal&category=animals&image_type=photo&page=1&per_page=3`)
-        animal2_photo_res.then(res => res.json()).then(data => {
-          setAnimal2Image(data.hits[0].largeImageURL)
+      axios.get(`/api/getAnimalPhoto?animal=${animals.animal2}`)
+        .then((res) => {
+          setAnimal2Image(res.data.photo)
         })
-        setIsLoading(false)
-      }, 1000 
-    )
-    
->>>>>>> 679ab1c (add loading indicator)
+      }, 1000)
   }
 
   const pickStrongerAnimal = (selection:number) => {
