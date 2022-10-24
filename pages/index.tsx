@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Who Will Win?</title>
         <meta name="description" content="Find out who is the strongest animal?" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <main>
@@ -80,7 +80,7 @@ const PickAnimal: NextPage = () => {
   }
 
   if(isLoading) {
-    return <div className="lds-hourglass text-center"></div>
+    return <img alt='spinner' className="spin-image text-center" src='./favicon.png'></img>
   } else {
     return (
       <div>
@@ -93,7 +93,7 @@ const PickAnimal: NextPage = () => {
             }}/>
             <div className='text-white p-4 text-3xl'>{animal1}</div>
           </div>
-          <div className="text-white text-xl">VS.</div>
+          <img alt='vslogo' src='./favicon.png' width={300} height={300}></img>
           <div className='flex flex-col justify-between items-center'>
             <img alt='second animal' src={animal2Image} className='rounded p-12 max-h-96' onClick={() => {
               pickStrongerAnimal(1)

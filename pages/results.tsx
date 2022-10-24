@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import { NextPage } from "next";
 import Head from "next/head";
@@ -26,7 +27,7 @@ const Results: NextPage = () => {
             <Head>
                 <title>Who Will Win? - Results</title>
                 <meta name="description" content="Find out who is the strongest animal?" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.png" />
             </Head>
             <main className="flex flex-auto flex-col bg-black p-20">
                 <h1 className="text-white text-center text-8xl font-mono">Results</h1>
@@ -50,7 +51,7 @@ interface AnimalListProps {
 const AnimalList: NextPage<AnimalListProps> = (props:AnimalListProps) => {
     if(props.isLoading) {
         return (
-            <div className="lds-hourglass self-center"></div>
+            <img alt="vslogo" className="spin-image text-center" src='./favicon.png'></img>
         )
     }
     return (
