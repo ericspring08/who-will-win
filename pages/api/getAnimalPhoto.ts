@@ -8,9 +8,9 @@ export default function handler(
 
     const { animal } = req.query;
 
-    axios.get(`https://source.unsplash.com/1600x900/?${animal}`)
+    axios.get(`https://pixabay.com/api/?key=${process.env.PIXELBAY_KEY}&q=${animal}&image_type=photo`)
         .then(response => {
-            res.status(200).json({photo: response.request.res.responseUrl})
+            res.status(200).json({photo: response.data.hits[0].webformatURL})
         })
         .catch(error => {
             res.status(500).json({error: error})

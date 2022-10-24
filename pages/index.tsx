@@ -41,24 +41,25 @@ const PickAnimal: NextPage = () => {
   
   const fetchAnimals = async () => {
     setIsLoading(true)
+    const res = await fetch('/api/getAnimals')
+    const animals = await res.json()
+
+    setAnimal1(animals.animal1)
+    setAnimal2(animals.animal2)
+
+    await axios.get(`/api/getAnimalPhoto?animal=${animals.animal1}`)
+    .then((res) => {
+      setAnimal1Image(res.data.photo)
+    })
+
+    await axios.get(`/api/getAnimalPhoto?animal=${animals.animal2}`)
+    .then((res) => {
+      setAnimal2Image(res.data.photo)
+    })
     setTimeout(
       async () => {
-        const res = await fetch('/api/getAnimals')
-        const animals = await res.json()
-
-        setAnimal1(animals.animal1)
-        setAnimal2(animals.animal2)
-
-        await axios.get(`/api/getAnimalPhoto?animal=${animals.animal1}`)
-        .then((res) => {
-          setAnimal1Image(res.data.photo)
-        })
-
-      axios.get(`/api/getAnimalPhoto?animal=${animals.animal2}`)
-        .then((res) => {
-          setAnimal2Image(res.data.photo)
-        })
-      }, 1000)
+        setIsLoading(false)
+      }, 500)
   }
 
   const pickStrongerAnimal = (selection:number) => {

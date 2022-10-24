@@ -15,11 +15,14 @@ const Results: NextPage = () => {
             })
             setAnimals(res.data)
         })
-        setIsLoading(false)
+        setTimeout(
+            async () => {
+                setIsLoading(false) 
+        }, 500)
     }, [])
 
     return (
-        <div className="bg-black">
+        <div className="bg-black h-screen">
             <Head>
                 <title>Who Will Win? - Results</title>
                 <meta name="description" content="Find out who is the strongest animal?" />
@@ -47,7 +50,7 @@ interface AnimalListProps {
 const AnimalList: NextPage<AnimalListProps> = (props:AnimalListProps) => {
     if(props.isLoading) {
         return (
-            <div className="text-white text-center text-4xl font-mono">Loading...</div>
+            <div className="lds-hourglass self-center"></div>
         )
     }
     return (
